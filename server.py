@@ -28,15 +28,8 @@ class bcolors:
 SERVER_IP = "localhost"
 SERVER_PORT = 8765
 print("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓")
-print("┃   Cracked by DuckySoLucky #Qwack   ┃")
+print("┃   Cracked by DuckySoLucky#5181     ┃")
 print("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛")
-print("") 
-
-print(bcolors.OKGREEN + "Authorized" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.WARNING + socket.gethostname() + bcolors.ENDC)
-print(bcolors.WARNING + "Remote" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.OKGREEN + "Connected" + bcolors.ENDC)
-print(bcolors.HEADER + "Local" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.OKGREEN + "Connected" + bcolors.ENDC)
-print(bcolors.OKCYAN + "Forge" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.OKGREEN + "Connected" + bcolors.ENDC)
-print(bcolors.OKBLUE + "Lunar" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.FAIL + "Failed" + bcolors.ENDC)
 print("")
 ##Mapping stuff
 version_map={}
@@ -78,9 +71,9 @@ def loadAllMappings(path = "mappings"):
         version_map[version]["method"] = srg_method
         version_map[version]["field"] = srg_field
         if version=='1.8.9' or version=='1.7.10':
-            print(bcolors.OKCYAN + f"{version}" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.OKGREEN + "Connected" + bcolors.ENDC)
+            print(bcolors.OKCYAN + f"{version}" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.OKGREEN + "Connected")
         else:
-            print(bcolors.OKCYAN + "1.12.2" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.OKGREEN + "Connected" + bcolors.ENDC)
+            print(bcolors.OKCYAN + "1.12.2" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.OKGREEN + "Connected")
 
 def downloadMappings(path = "mappings"):
     global mapping_urls
@@ -408,10 +401,6 @@ def FileIntegrityCheck(assets_folder = "assets"):
     SingleFileIntegrity("Dump1", DUMP1_HASH)
     SingleFileIntegrity("Dump2", DUMP2_HASH)
     SingleFileIntegrity("strings.txt", STRINGS_HASH)
-    print("")
-    print(bcolors.WARNING + "Config" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.BOLD + "Fetching..." + bcolors.ENDC)
-    print(bcolors.WARNING + "Config" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.BOLD + "Fetched" + bcolors.ENDC)
-    print(bcolors.FAIL + "Startup Complete" + bcolors.ENDC)
 
 
 def GenerateSSL(cert_file = "cert.pem", key_file = "key.pem"):
@@ -420,7 +409,7 @@ def GenerateSSL(cert_file = "cert.pem", key_file = "key.pem"):
 
     cert = crypto.X509()
     cert.get_subject().C = "FR"
-    cert.get_subject().O = "Vape Offline Server by Andro24"
+    cert.get_subject().O = "Server by DuckySoLucky#5181 | Credits: Andro24 & Apfelsaft#0002"
     cert.get_subject().CN = "localhost"
     cert.set_serial_number(1337)
     cert.gmtime_adj_notBefore(0)
@@ -439,23 +428,27 @@ async def xor_string(text: bytes, key: int) -> bytes:
     return bytes([b ^ key for b in text])
 
 async def saveSettings(ip, settings, path):
+    print(bcolors.WARNING + "Settings" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.BOLD + "Saving settings.." + bcolors.ENDC)
     makeDir(path)
     with open(path + "/" + HashString(ip) + ".json", "w") as f:
         f.write(settings)
+        print(bcolors.WARNING + "Settings" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.BOLD + "Successfully saved settings" + bcolors.ENDC)
 
 async def loadSettings(ip, path):
+    print(bcolors.WARNING + "Settings" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.BOLD + "Fetching settings.." + bcolors.ENDC)
     settings_file_path = path + "/" + HashString(ip) + ".json"
     if not os.path.exists(settings_file_path):
-        print(f"{ip} : No settings found for this ip.")
+        print(bcolors.WARNING + "Settings" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.BOLD + "Found no settings" + bcolors.ENDC)
         return "{}"
     with open(settings_file_path, "r") as f:
+        print(bcolors.WARNING + "Settings" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.BOLD + "Fetched" + bcolors.ENDC)
         return f.read()
 
 FILE_BUFFER_SIZE=1000
 async def send_file(websocket, file, xor_key):
     global FILE_BUFFER_SIZE
     ip = websocket.remote_address[0];
-    print(f"{ip} : Sending {file}...")
+    print(f"Sending {file}...")
     with open(file, "rb") as f:
         f.seek(0, os.SEEK_END)
         fileSize = f.tell()
@@ -467,7 +460,7 @@ async def send_file(websocket, file, xor_key):
         while buffer:
             await websocket.send(await xor_string(buffer, xor_key))
             buffer = f.read(FILE_BUFFER_SIZE)
-        print(f"{ip} : Sent {file} ({fileSize}) !")
+        print(f"Sent {file} ({fileSize}) !")
 
 async def send_assets(websocket, xor_key, assets_folder = "assets"):
     global ASSET_LIST
@@ -478,8 +471,8 @@ async def send_assets(websocket, xor_key, assets_folder = "assets"):
         await websocket.send(await xor_string(file.encode("ascii"), xor_key))
         with open(assets_folder + "/" + file + ".png", "rb") as f:
             await websocket.send(await xor_string(f.read(), xor_key))
-            print(f"{ip} : Sent {file} !")
-    print(f"{ip} : Sent {len(ASSET_LIST)} assets !")
+            print(f"Sent {file} !")
+    print(f"Sent {len(ASSET_LIST)} assets !")
 
 async def send_strings(websocket, xor_key, strings_file = "strings.txt"):
     ip = websocket.remote_address[0];
@@ -493,7 +486,7 @@ async def send_strings(websocket, xor_key, strings_file = "strings.txt"):
     
     for string in strings:
         await websocket.send(await xor_string(base64.b64encode(string), xor_key))
-    print(f"{ip} : Sent {len(strings)} strings !")
+    print(f"Sent {len(strings)} strings !")
 
 async def handle_client(websocket, path):
     global version_map
@@ -503,7 +496,6 @@ async def handle_client(websocket, path):
     MAGIC_LITE="7f14cd4b5e3e73833e333635c7f17a1b"
     
     ip = websocket.remote_address[0];
-    print(f"New client from {ip} !")
     
     xor_key = 0
     client_mc_version = ""
@@ -525,9 +517,9 @@ async def handle_client(websocket, path):
             #Hello
             if packet_id == 3 and len(recvdata) >= 3:
                 if recvdata[2] != "V4" and recvdata[2] != "lite":
-                    print(f"{ip} : [Hello] Invalid version : {recvdata[2]}")
+                    print(f"[Hello] Invalid version : {recvdata[2]}")
                     return
-                print(f"{ip} : [Hello] Version : {recvdata[2]}")
+                print(f"[Hello] Version : {recvdata[2]}")
                 vape_version = recvdata[2]
                 if vape_version == "V4":
                     MAGIC = MAGIC_V4
@@ -539,22 +531,22 @@ async def handle_client(websocket, path):
                 await websocket.send("ok")
             #XorKey
             elif packet_id == 12 and len(recvdata) >= 2:
-                print(f"{ip} : [XorKey] Key : {recvdata[1]}")
+                print(f"[XorKey] Key : {recvdata[1]}")
                 xor_key = int(recvdata[1])
             #HashReq
             elif packet_id == 2:
-                print(f"{ip} : [HashReq]")
+                print(f"[HashReq]")
                 await websocket.send(await xor_string(MAGIC.encode("ascii"), xor_key))
             #UNK1
             elif packet_id == 27 and len(recvdata) >= 4:
-                print(f"{ip} : [UNK1] {recvdata[1]} {recvdata[2]} {recvdata[3]}")
+                print(f"[UNK1] {recvdata[1]} {recvdata[2]} {recvdata[3]}")
                 await websocket.send("0")
             #FileReq1
             elif packet_id == 47 and len(recvdata) >= 2:
                 if recvdata[1] != "2" and recvdata[1] != "5":
-                    print(f"{ip} : [FileReq1] Invalid file number : {recvdata[1]}")
+                    print(f"[FileReq1] Invalid file number : {recvdata[1]}")
                     return
-                print(f"{ip} : [FileReq1] {recvdata[1]}")
+                print(f"[FileReq1] {recvdata[1]}")
                 
                 if recvdata[1] == "2":
                     await send_file(websocket, "Dump0", xor_key)
@@ -563,10 +555,10 @@ async def handle_client(websocket, path):
             #MCVersion
             elif packet_id == 10 and len(recvdata) >= 2:
                 if not recvdata[1] in version_map:
-                    print(f"{ip} : [MCVersion] Invalid version : {recvdata[1]}")
+                    print(f"[MCVersion] Invalid version : {recvdata[1]}")
                     return
                 
-                print(f"{ip} : [MCVersion] Version : {recvdata[1]}")
+                print(f"[MCVersion] Version : {recvdata[1]}")
                 client_mc_version = recvdata[1]
                 await websocket.send("0")
                 
@@ -574,12 +566,12 @@ async def handle_client(websocket, path):
                 srg_field = version_map[client_mc_version]["field"]
             #FileReq2
             elif packet_id == 53:
-                print(f"{ip} : [FileReq2]")
+                print(f"[FileReq2]")
                 await send_file(websocket, "Dump1", xor_key)
             #FieldMap
             elif packet_id == 8 and len(recvdata) >= 3:
                 if srg_field == None:
-                    print(f"{ip} : [FieldMap] Unknown version !")
+                    print(f"[FieldMap] Unknown version !")
                     return
                 
                 class_name = (await xor_string(recvdata[1].encode("ascii"), xor_key)).decode("ascii")
@@ -587,38 +579,38 @@ async def handle_client(websocket, path):
                 full_path = class_name + "/" + field_name
 
                 if full_path in srg_field:
-                    print(f"{ip} : [FieldMap] Field : {full_path}")
+                    print(f"[FieldMap] Field : {full_path}")
                     await websocket.send(await xor_string(srg_field[full_path]["forge_name"].encode("ascii"), xor_key))
                 else:
-                    print(f"{ip} : [FieldMap] Unknown field : {full_path}")
+                    print(f"[FieldMap] Unknown field : {full_path}")
                     await websocket.send(await xor_string(field_name.encode("ascii"), xor_key))
             #MethodMap
             elif packet_id == 9 and len(recvdata) >= 3:
                 if srg_method == None:
-                    print(f"{ip} : [MethodMap] Unknown version !")
+                    print(f"[MethodMap] Unknown version !")
                     return
             
                 class_name = (await xor_string(recvdata[1].encode("ascii"), xor_key)).decode("ascii")
                 method_name = (await xor_string(recvdata[2].encode("ascii"), xor_key)).decode("ascii")
                 full_path = class_name + "/" + method_name
                 if full_path in srg_method:
-                    print(f"{ip} : [MethodMap] Method : {full_path}")
+                    print(f"[MethodMap] Method : {full_path}")
                     await websocket.send(await xor_string((srg_method[full_path]["forge_name"] + ":" + srg_method[full_path]["forge_params"]).encode("ascii"), xor_key))
                 else:
-                    print(f"{ip} : [MethodMap] Unknown method : {full_path}")
+                    print(f"[MethodMap] Unknown method : {full_path}")
                     await websocket.send(await xor_string(method_name.encode("ascii"), xor_key))
             #LoadSettings
             elif packet_id == 51:
-                print(f"{ip} : [LoadSettings] Sending settings ({settings_path})")
+                print(f"[LoadSettings] Sending settings ({settings_path})")
                 settings = base64.b64encode((await loadSettings(ip, settings_path)).encode("ascii"))
                 await websocket.send(settings)
             #AssetsReq
             elif packet_id == 55:
-                print(f"{ip} : [AssetsReq]")
+                print(f"[AssetsReq]")
                 await send_assets(websocket, xor_key)
             #StringsReq
             elif packet_id == 54:
-                print(f"{ip} : [StringsReq]")
+                print(f"[StringsReq]")
                 await send_strings(websocket, xor_key)
             #ClientInfo (Vape V4)
             elif packet_id == 56 and len(recvdata) >= 6:
@@ -627,19 +619,19 @@ async def handle_client(websocket, path):
                 MACAddress = (await xor_string(recvdata[3].encode("ascii"), xor_key)).decode("ascii")
                 UNK1 = (await xor_string(recvdata[4].encode("ascii"), xor_key)).decode("ascii")
                 UNK2 = (await xor_string(recvdata[5].encode("ascii"), xor_key)).decode("ascii")
-                print(f"{ip} : [ClientInfo V4] IGN : {IGN} PC Username : {PCUsername} MAC Address : {MACAddress} UNK1 : {UNK1} UNK2 : {UNK2}")
+                print(f"[ClientInfo V4] IGN: {IGN} | PC Username: {PCUsername} | MAC Address: {MACAddress} | UNK1: {UNK1} | UNK2: {UNK2}")
             #Hello2 (V4)
             elif packet_id == 4 and len(recvdata) >= 4:
                 if recvdata[1] != MAGIC_V4 or recvdata[3] != "V4":
-                    print(f"{ip} : [Hello2] Invalid. MAGIC : {recvdata[1]} Version : {recvdata[3]}")
+                    print(f"[Hello2] Invalid. MAGIC : {recvdata[1]} Version : {recvdata[3]}")
                     return
-                print(f"{ip} : [Hello2] Version : {recvdata[3]}")
+                print(f"[Hello2] Version : {recvdata[3]}")
                 settings_path += "v4"
                 await websocket.send("ok")
             #ProfileReq
             elif packet_id == 52 and len(recvdata) >= 2:
                 request = (await xor_string(recvdata[1].encode("ascii"), xor_key)).decode("ascii")
-                print(f"{ip} : [ProfileReq] Request : {request}")
+                print(f"[ProfileReq] Request : {request}")
                 if vape_version == "V4":
                     await websocket.send(await xor_string(MAGIC.encode("ascii"), xor_key))
                 elif vape_version == "lite":
@@ -648,15 +640,15 @@ async def handle_client(websocket, path):
             elif packet_id == 50 and len(recvdata) >= 2:
                 settings = base64.b64decode(recvdata[1].encode("ascii")).decode("ascii")
                 await saveSettings(ip, settings, settings_path)
-                print(f"{ip} : [SyncSettings] Downloaded settings ({settings_path})")
+                print(f"[SyncSettings] Downloaded settings ({settings_path})")
             #UNK3 Only Vape Lite
             elif packet_id == 48 and len(recvdata) >= 2:
-                print(f"{ip} : [UNK3] {recvdata[1]}")
+                print(f"[UNK3] {recvdata[1]}")
                 await websocket.send(await xor_string("44".encode("ascii"), xor_key))
             #IGN Only Vape Lite
             elif packet_id == 21 and len(recvdata) >= 2:
                 IGN = (await xor_string(recvdata[1].encode("ascii"), xor_key)).decode("ascii")
-                print(f"{ip} : [IGN] {IGN}")
+                print(f"[IGN] {IGN}")
             #ClientInfo (Vape Lite)
             elif packet_id == 49 and len(recvdata) >= 5:
                 PCUsername = (await xor_string(recvdata[1].encode("ascii"), xor_key)).decode("ascii")
@@ -664,24 +656,30 @@ async def handle_client(websocket, path):
                 UNK1 = (await xor_string(recvdata[3].encode("ascii"), xor_key)).decode("ascii")
                 UNK2 = (await xor_string(recvdata[4].encode("ascii"), xor_key)).decode("ascii")
                 
-                print(f"{ip} : [ClientInfo Lite] PC Username : {PCUsername} MAC Address : {MACAddress} UNK1 : {UNK1} UNK2 : {UNK2}")
+                print(f"[ClientInfo Lite] PC Username : {PCUsername} MAC Address : {MACAddress} UNK1 : {UNK1} UNK2 : {UNK2}")
             #Hello3 (Lite)
             elif packet_id == 1 and len(recvdata) >= 4:
                 if recvdata[1] != MAGIC_LITE:
-                    print(f"{ip} : [Hello3] Invalid. MAGIC : {recvdata[1]}")
+                    print(f"[Hello3] Invalid. MAGIC : {recvdata[1]}")
                     return
-                print(f"{ip} : [Hello3]")
+                print(f"[Hello3]")
                 settings_path += "lite"
                 await websocket.send("ok")
             else:
-                print(f"{ip} : Unknown packet. ID : {packet_id}")
+                print(f"Unknown packet. ID : {packet_id}")
 
         except websockets.exceptions.ConnectionClosedError as e:
             if e.code == 1005:
-                print(f"{ip} : Connection closed.")
+                print(f"Connection closed.")
             else:
                 print(e)
             break
+
+async def serve(handle_client, SERVER_IP, SERVER_PORT, ssl_context):
+    server = await websockets.serve(
+        handle_client, SERVER_IP, SERVER_PORT, ssl=ssl_context
+    )
+    await server.wait_closed()
 
 def main():
     loadAllMappings()
@@ -698,16 +696,30 @@ def main():
     key_file = pathlib.Path(__file__).with_name(SSL_KEY_FILE)
     ssl_context.load_cert_chain(certfile=cert_file, keyfile=key_file)
 
-    start_server = websockets.serve(
-        handle_client, SERVER_IP, SERVER_PORT, ssl=ssl_context
-    )
     print("")
     print("┏━━━━━━━━━━━━━━━━━━━━━━━┓")
     print(f"┃    {SERVER_IP}:{SERVER_PORT}     ┃")
     print("┗━━━━━━━━━━━━━━━━━━━━━━━┛")
+    print("")
+    print(bcolors.FAIL + "Startup Complete" + bcolors.ENDC)
+    # print a message with same format as other messages which is gonna let user know that u can use only forge client and not clients like lunar or badlion
+    print("")
+    print(bcolors.FAIL + "NOTE".center(80) + bcolors.ENDC)
+    print("")
+    print(bcolors.OKBLUE + "You can only use forge client with this server".center(80) + bcolors.ENDC)
+    print(bcolors.OKBLUE + "Also you must not have any Sk1er mods (For example: Patcher) otherwise you're gonna crash".center(80) + bcolors.ENDC)
+    print(bcolors.OKBLUE + "You can't use Lunar, Badlion or any other custom client".center(80) + bcolors.ENDC)
+    print("")
 
-    asyncio.get_event_loop().run_until_complete(start_server)
-    asyncio.get_event_loop().run_forever()
+    if sys.version_info >= (3, 7):
+        asyncio.run(serve(handle_client, SERVER_IP, SERVER_PORT, ssl_context))
+    else:
+        start_server = websockets.serve(
+            handle_client, SERVER_IP, SERVER_PORT, ssl=ssl_context
+        )
+        asyncio.get_event_loop().run_until_complete(start_server)
+        asyncio.get_event_loop().run_forever()
+
 
 if __name__ == "__main__":
     main()

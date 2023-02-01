@@ -2,4 +2,4 @@ websockets==8.1
 tqdm==4.31.1
 pandas
 requests==2.21.0
-pyOpenSSL==20.0.1
+pyOpenSSL==23.0.0
