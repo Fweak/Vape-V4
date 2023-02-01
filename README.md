@@ -12,7 +12,7 @@ This project is a modified version of Kangaroo's Vape crack, which was no longer
 
 ## Limitations
 
-- Currently does not support Lunar client
+- Currently does not support Lunar Client or any custom client.
   - If you would like to appear as if you are using Lunar client, we recommend using [Lilith](https://lilith.rip/), which has a Lunar spoofer.
 - Vanilla is not fully supported
   - There is a mapping issue that has not yet been resolved, but it works on forge.
