@@ -1,38 +1,40 @@
 # Vape V4
 
-> I do not promote any kind of cheating. This is just for educational purposes, If u are gonna use this. I'm WARNING you, it is not my fault if u get banned.
+**Disclaimer:** The purpose of this project is for educational purposes only. The author does not promote any form of cheating and will not be held responsible for any consequences resulting from its use.
 
-Firstly, huge credits to the Kangaroo's team for cracking vape. I have just made new working server
+This project is a modified version of Kangaroo's Vape crack, which was no longer functional. The goal of this project is to provide an updated emulator for Vape's server.
 
-# Vape Server
+## Features
 
-This is a new updated server that emulates Vape's server based on Kangaroo's crack since the old one wasn't working anymore.
+- Supports Vape V4 Forge for versions 1.7, 1.8, and 1.12
+- Includes all modules
+- Supports saving configuration and editing profiles
 
-### What works?
-- Vape V4 Forge (1.7, 1.8, 1.12)
-- Every module
-- Saving config
-- Editing Profiles
-### What doesn't work?
-- Lunar client
-> If u would like to make it look like u are on Lunar Client, I recommend Lilith. Lilith has Lunar spoofer. https://lilith.rip/
-- Vanilla 
-> Mapping issue (I'm lazy to fix, since it works on forge)
-### How to run it?
+## Limitations
 
-#### Server-side
-- Get Python [3.9.0](https://www.python.org/downloads/release/python-390/)
-- Clone this git
-- Run `pip install -r requirements.txt --upgrade` to install the requirements
-- Run `server.py`
-- Open Vape folder
-- Drag Vape file over the Kangaroo Patcher
-- Click Yes
-- Enjoy!
+- Currently does not support Lunar client
+  - If you would like to appear as if you are using Lunar client, we recommend using [Lilith](https://lilith.rip/), which has a Lunar spoofer.
+- Vanilla is not fully supported
+  - There is a mapping issue that has not yet been resolved, but it works on forge.
 
-### Is this safe?
+## Setup
 
-I'm not entirely sure, I just took Kangaroo's crack. People told it's safe, I cannot confirm anything. Few of my friends have been using it for few weeks, nothing happened so it should be safe.
+Follow these steps to set up and start the Vape V4:
 
-### Credit
-- The Kangaroo Team for the crack and their old server
+1. Download and install Python. [Download](https://www.python.org/downloads/release/python-390/)
+2. Clone this GitHub repository.
+3. Run the following command in the terminal to install the required dependencies:
+
+   `pip install -r requirements.txt --upgrade`
+
+4. Run the `server.py` script.
+5. Wait until the following image appears:
+
+![image](https://user-images.githubusercontent.com/75372052/216153203-5144b40a-fb6d-41eb-a9a7-7f7967df0eae.png)
+
+6. Open the Vape folder.
+7. Drag the Vape file over the Kangaroo Patcher.
+8. Click Yes.
+9. Enjoy!
+
+Don't forget to star this repository if you found it helpful.
