@@ -71,9 +71,9 @@ def loadAllMappings(path = "mappings"):
         version_map[version]["method"] = srg_method
         version_map[version]["field"] = srg_field
         if version=='1.8.9' or version=='1.7.10':
-            print(bcolors.OKCYAN + f"{version}" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.OKGREEN + "Connected")
+            print(bcolors.OKCYAN + f"{version}" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.OKGREEN + "Connected" + bcolors.ENDC)
         else:
-            print(bcolors.OKCYAN + "1.12.2" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.OKGREEN + "Connected")
+            print(bcolors.OKCYAN + "1.12.2" + bcolors.ENDC + bcolors.UNDERLINE + " » " + bcolors.OKGREEN + "Connected" + bcolors.ENDC)
 
 def downloadMappings(path = "mappings"):
     global mapping_urls
@@ -697,9 +697,9 @@ def main():
     ssl_context.load_cert_chain(certfile=cert_file, keyfile=key_file)
 
     print("")
-    print("┏━━━━━━━━━━━━━━━━━━━━━━━┓")
-    print(f"┃    {SERVER_IP}:{SERVER_PORT}     ┃")
-    print("┗━━━━━━━━━━━━━━━━━━━━━━━┛")
+    print("┏━━━━━━━━━━━━━━━━━━━━━━━┓" + bcolors.ENDC)
+    print(f"┃    {SERVER_IP}:{SERVER_PORT}     ┃" + bcolors.ENDC)
+    print("┗━━━━━━━━━━━━━━━━━━━━━━━┛" + bcolors.ENDC)
     print("")
     print(bcolors.FAIL + "Startup Complete" + bcolors.ENDC)
     # print a message with same format as other messages which is gonna let user know that u can use only forge client and not clients like lunar or badlion
