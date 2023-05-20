@@ -702,7 +702,6 @@ def main():
     print("┗━━━━━━━━━━━━━━━━━━━━━━━┛" + bcolors.ENDC)
     print("")
     print(bcolors.FAIL + "Startup Complete" + bcolors.ENDC)
-    # print a message with same format as other messages which is gonna let user know that u can use only forge client and not clients like lunar or badlion
     print("")
     print(bcolors.FAIL + "NOTE".center(80) + bcolors.ENDC)
     print("")
