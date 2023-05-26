@@ -2,39 +2,25 @@
 
 **Disclaimer:** The purpose of this project is for educational purposes only. The author does not promote any form of cheating and will not be held responsible for any consequences resulting from its use.
 
-This project is a modified version of Kangaroo's Vape crack, which was no longer functional. The goal of this project is to provide an updated emulator for Vape's server.
+## Versions
+- [v4.04](https://github.com/DuckySoLucky/Vape-V4/tree/v4.04)
+- [v4.10](https://github.com/DuckySoLucky/Vape-V4/tree/main)
 
-## Features
 
-- Supports Vape V4 Forge for versions 1.7, 1.8, and 1.12
-- Includes all modules
-- Supports saving configuration and editing profiles
-
-## Limitations
-
-- Currently does not support Lunar Client or any custom client.
-  - If you would like to appear as if you were using Lunar client, I recommend using [Lilith](https://lilith.rip/), which has a Lunar spoofer.
-- Vanilla is not fully supported
-  - There is a mapping issue that has not yet been resolved (and there are no plans).
+## Note
+Crack supports only Vanilla and Lunar Client. Forge **DOES NOT** work since mappings are not included in the crack. If you would like to receive forge mappings feel free to contact me on the [Discord](https://discord.com/users/486155512568741900) .
 
 ## Setup
+Follow these steps to set up and start the Vape v4.10:
 
-Follow these steps to set up and start the Vape V4:
+1. Git clone this repository or download the source code as a zip file.
 
-1. Download and install Python. [Download](https://www.python.org/downloads/release/python-390/)
-2. Clone this GitHub repository.
-3. Run the following command in the terminal to install the required dependencies:
+2. Download [Java 17.0.6](https://download.oracle.com/java/17/archive/jdk-17.0.6_windows-x64_bin.exe) or higher.
 
-   `pip install -r requirements.txt --upgrade`
+3. Launch Lunar Client.
 
-4. Run the `server.py` script.
-5. Wait until the following image appears:
+4. Launch the `vape.bat` file.
 
-![image](https://user-images.githubusercontent.com/75372052/216153203-5144b40a-fb6d-41eb-a9a7-7f7967df0eae.png)
+5. Enjoy!
 
-6. Open the Vape folder.
-7. Drag the Vape file over the Kangaroo Patcher.
-8. Click Yes.
-9. Enjoy!
-
-Don't forget to star this repository if you found it helpful.
+6. Star this repository if this helped you!
