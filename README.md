@@ -8,7 +8,7 @@
 
 
 ## Note
-Crack supports only Vanilla and Lunar Client. Forge **DOES NOT** work since mappings are not included in the crack. If you would like to receive forge mappings feel free to contact me on the [Discord](https://discord.com/users/486155512568741900) .
+Crack supports only Vanilla and Lunar Client. Forge **DOES NOT** work since mappings are not included in the crack. If you would like to receive forge mappings feel free to contact me on the [Discord](https://discord.com/users/486155512568741900).
 
 ## Setup
 Follow these steps to set up and start the Vape v4.10:
